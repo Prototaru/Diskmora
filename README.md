@@ -4,6 +4,12 @@
 
 A local, read-only disk scanner that identifies files by their contents, not their extensions. Built with Tauri 2, React and Rust.
 
+## Preview
+
+![Diskmora file tree with archive contents, size totals and grouped format filters](assets/screenshots/diskmora-scan.png)
+
+Interface preview using a real scan of synthetic sample files. The displayed paths and filenames are demonstration data.
+
 ## Features
 
 - Scan a chosen folder recursively, including hidden files and hidden folders.
