@@ -59,6 +59,14 @@ pnpm exec tauri build --bundles nsis
 
 Packages are written under `src-tauri/target/release/bundle/`. Installer execution, signing and file-manager integration require validation on the destination OS.
 
+## GitHub Actions packaging
+
+The `Build installers` workflow builds macOS Apple Silicon and Intel DMGs, a Windows x64 NSIS installer, and Linux x64 DEB/AppImage packages. No signing secrets are required; macOS uses ad-hoc signing without notarization, and Windows installers are unsigned. OS security prompts may require manual approval.
+
+- Push this repository, then select **Actions → Build installers → Run workflow** for a manual build. Download packages from the run's **Artifacts** section (retained for 14 days). The workflow must be present on the default branch for manual dispatch.
+- To publish a GitHub Release, update the versions in `package.json`, `src-tauri/Cargo.toml`, and `src-tauri/tauri.conf.json`, refresh the lock files, commit, then push a matching tag such as `v0.1.0`. Tags containing `-` produce prereleases. Releases become visible as individual platform builds finish; check that all four jobs pass before announcing a release.
+- The workflow uses the built-in `GITHUB_TOKEN` with `contents: write`. Repository or organization policies must allow GitHub Actions and release creation.
+
 ## Recognized formats
 
 | Category | Formats |
